@@ -7,6 +7,8 @@ int main()
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
     
     sf::CircleShape shape(25.f);
+    
+    shape.setPosition(375.f, 550.f);
 
     window.setFramerateLimit(60);
     // run the program as long as the window is open
@@ -16,30 +18,23 @@ int main()
         sf::Event event;
         while (window.pollEvent(event))
         {
-            switch (event.type){
-                case sf::Event::Closed:
-                    // "close requested" event: we close the window
-                    if (event.type == sf::Event::Closed)
-                        window.close();
-                case sf::Event::KeyPressed:
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)){
-                        shape.move(-50.f, 0.f);
-                    }
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)){
-                        shape.move(50.f, 0.f);
-                    }
-                    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)){
-                        shape.move(0.f, -50.f);
-                    }
+            // "close requested" event: we close the window
+            if (event.type == sf::Event::Closed)
+                window.close();
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
+                shape.move(-50.f, 0.f);
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
+                shape.move(50.f, 0.f);
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+                shape.move(0.f, -50.f);
             }
         }
         // clear the window with black color
         window.clear(sf::Color::Black);
         
-    shape.setPosition(375.f, 550.f);
-        
-    shape.move(-200.f, -200.f);
-        
+                
 // set the shape color to green
 shape.setFillColor(sf::Color(135,206,250));
 
