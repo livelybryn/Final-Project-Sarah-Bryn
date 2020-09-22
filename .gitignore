@@ -1,0 +1,3 @@
+##Don't include anything in files called Xcode or build
+build/
+xcode/
