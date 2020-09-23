@@ -5,8 +5,8 @@
 int main()
 {
     Frog frogger;
-    Cars car;
-    vector<Cars> carVector = car.createVector();
+    Cars track;
+    vector<Cars> carVector1 = track.createVector();
 
     // create the window
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
@@ -33,11 +33,13 @@ int main()
         }
         
         //Movement for the cars
-        for (int i=0; i<carVector.size(); i++) {
-            if(carVector[i].getxAxis() > 800) {
-                carVector[i].setxAxis(150);
+        for (int i=0; i<3; i++) {
+            int compare = carVector1[i].getxAxis();
+            if(carVector1[i].carXAxis() > 800) {
+                carVector1[i].resetCar(450);
+                carVector1[i].moveCar(1);
             }
-            carVector[i].moveCar(1);
+            carVector1[i].moveCar(1);
         }
         
         // clear the window with black color
@@ -45,8 +47,8 @@ int main()
 
         //Draw frogger and the cars
         window.draw(frogger.getFrog());
-        for (int i=0; i<carVector.size(); i++) {
-            window.draw(carVector[i].getCar());
+        for (int i=0; i<carVector1.size(); i++) {
+            window.draw(carVector1[i].getCar());
         }
 
 	// end the current frame
