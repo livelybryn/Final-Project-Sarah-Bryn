@@ -48,7 +48,7 @@ public:
     }
     
     //Method
-    sf::RectangleShape& getCar () {
+    sf::RectangleShape getCar () {
         return carShape;
     }
     vector<Cars> createVector ();
