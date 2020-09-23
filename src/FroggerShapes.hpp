@@ -29,7 +29,8 @@ public:
     sf::CircleShape getFrog () {
         return frogShape;
     }
-    public:
+    
+private:
     int xAxis;
     int yAxis;
     sf::CircleShape frogShape;
@@ -51,13 +52,15 @@ public:
         return carShape;
     }
     vector<Cars> createVector ();
-    void moveCar(float elapsed);
     float getxAxis();
     float getyAxis();
     void setxAxis(float x);
     void setyAxis(float y);
+    void moveCar(int rand);
+    void resetCar(int y);
+    float carXAxis ();
     
-public:
+private:
     float xAxis;
     float yAxis;
     int speed;
@@ -109,10 +112,10 @@ vector<Cars> Cars::createVector () {
     vector<Cars> carVector = {};
     Cars car;
     for (int i=0; i<3; i++) {
-        car.xAxis = i*150;
-        car.yAxis = 450;
+//        car.xAxis = i*150;
+//        car.yAxis = 450;
         car.speed = 1;
-        car.carShape.setPosition(car.xAxis, car.yAxis);
+        car.carShape.setPosition(i*150, 450);
         carVector.push_back (car);
     }
     return carVector;
@@ -132,8 +135,18 @@ void Cars::setyAxis(float y) {
     yAxis = y;
 }
 
-void Cars::moveCar(float elapsed) {
-    carShape.move(1 * speed * elapsed, 0);
+void Cars::moveCar(int rand) {
+    carShape.move(1 * speed * rand, 0);
+//    xAxis += 1 * speed * rand;
+}
+
+void Cars::resetCar(int y) {
+    carShape.setPosition(150, y);
+//    xAxis = 150;
+}
+
+float Cars::carXAxis () {
+    return carShape.getPosition().x;
 }
 
 #endif /* FroggerShapes_hpp */
