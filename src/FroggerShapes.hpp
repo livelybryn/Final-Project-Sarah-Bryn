@@ -53,8 +53,11 @@ public:
         return carShape;
     }
     vector<Cars> createVector ();
+    void moveCar(float elapsed);
     float getxAxis();
     float getyAxis();
+    void setxAxis(float x);
+    void setyAxis(float y);
     
 private:
     float xAxis;
@@ -91,7 +94,7 @@ vector<Cars> Cars::createVector () {
     for (int i=0; i<3; i++) {
         car.xAxis = i*150;
         car.yAxis = 450;
-        car.speed = 10;
+        car.speed = 1*rand()%5;
         carVector.push_back (car);
     }
     return carVector;
@@ -102,6 +105,17 @@ float Cars::getxAxis() {
 }
 float Cars::getyAxis() {
     return yAxis;
+}
+
+void Cars::setxAxis(float x) {
+
+}
+void Cars::setyAxis(float y) {
+    
+}
+
+void Cars::moveCar(float elapsed) {
+    carShape.move(50*speed*elapsed,0);
 }
 
 
