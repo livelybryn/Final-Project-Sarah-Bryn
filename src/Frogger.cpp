@@ -27,11 +27,11 @@ int main()
             
             //Movement for the frog
             frogger.moveFrog();
-
-//            gameOver(frogger, carVector);
-
+            globalBounds(frogger, carVector);
+            
         }
         
+
         //Movement for the cars
         for (int i=0; i<carVector.size(); i++) {
             if(carVector[i].getxAxis() > 800) {
@@ -48,6 +48,7 @@ int main()
         for (int i=0; i<carVector.size(); i++) {
             window.draw(carVector[i].getCar());
         }
+        
 
 	// end the current frame
         window.display();

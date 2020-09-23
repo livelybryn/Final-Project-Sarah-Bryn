@@ -29,8 +29,7 @@ public:
     sf::CircleShape getFrog () {
         return frogShape;
     }
-    
-private:
+    public:
     int xAxis;
     int yAxis;
     sf::CircleShape frogShape;
@@ -58,7 +57,7 @@ public:
     void setxAxis(float x);
     void setyAxis(float y);
     
-private:
+public:
     float xAxis;
     float yAxis;
     int speed;
@@ -66,36 +65,27 @@ private:
 };
 
 class World {
-    friend class Frog;
-    friend class Cars;
 public:
     void updateCarMove ();
     void updateCarSpeed ();
-    bool globalBounds(Frog frog, Cars car);
-    void gameOver(Frog frog, Cars car);
+    void globalBounds(Frog& frog, vector<Cars>& car);
     
 private:
 
     
 };
 
-bool globalBounds(Frog frog, std::vector<Cars> vc) {
-    for (int i=0; i<3; i++) {
-        if (frog.getFrog().getGlobalBounds() == vc[i].getCar().getGlobalBounds()) {
-            return true;
-        }
-    }
-    return false;
-}
-
-void gameOver(Frog frog, std::vector<Cars> vc) {
-    if (globalBounds(frog, vc) == true) {
-        frog.getFrog().setPosition(0, 450);
-        frog.getFrog().setFillColor(sf::Color(255,230,0));
-        for (int i=0; i<3; i++) {
-            vc[i].setxAxis(i*150);
-            vc[i].setyAxis(450);
-            vc[i].getCar().setPosition(vc[i].getxAxis(), vc[i].getyAxis());
+void globalBounds(Frog& frog, vector<Cars>& vc) {
+    for (int i=0; i < vc.size(); i++) {
+        sf::FloatRect tempBound = vc[i].carShape.getGlobalBounds();
+        sf::FloatRect froggerBound = frog.frogShape.getGlobalBounds();
+        if (froggerBound.intersects(tempBound)) {
+            frog.frogShape.setPosition(375, 550);
+            frog.frogShape.setFillColor(sf::Color(255,230,0));
+            for (int x=0; x < vc.size(); x++) {
+                vc[x].setxAxis(x*150);
+                vc[x].carShape.setPosition(vc[x].getxAxis(), vc[x].getyAxis());
+            }
         }
     }
 }
@@ -118,10 +108,10 @@ void Frog:: moveFrog () {
 vector<Cars> Cars::createVector () {
     vector<Cars> carVector = {};
     Cars car;
-    for (int i=0; i<1; i++) {
+    for (int i=0; i<3; i++) {
         car.xAxis = i*150;
         car.yAxis = 450;
-        car.speed = 100;
+        car.speed = 1;
         car.carShape.setPosition(car.xAxis, car.yAxis);
         carVector.push_back (car);
     }
