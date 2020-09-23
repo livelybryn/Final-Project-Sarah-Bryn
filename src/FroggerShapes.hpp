@@ -48,8 +48,7 @@ public:
     }
     
     //Method
-    sf::RectangleShape getCar () {
-        carShape.setPosition(xAxis, yAxis);
+    sf::RectangleShape& getCar () {
         return carShape;
     }
     vector<Cars> createVector ();
@@ -91,10 +90,11 @@ void Frog:: moveFrog () {
 vector<Cars> Cars::createVector () {
     vector<Cars> carVector = {};
     Cars car;
-    for (int i=0; i<3; i++) {
+    for (int i=0; i<1; i++) {
         car.xAxis = i*150;
         car.yAxis = 450;
-        car.speed = 1*rand()%5;
+        car.speed = 100;
+        car.carShape.setPosition(car.xAxis, car.yAxis);
         carVector.push_back (car);
     }
     return carVector;
@@ -115,9 +115,7 @@ void Cars::setyAxis(float y) {
 }
 
 void Cars::moveCar(float elapsed) {
-    carShape.move(50*speed*elapsed,0);
+    carShape.move(1 * speed * elapsed, 0);
 }
-
-
 
 #endif /* FroggerShapes_hpp */
