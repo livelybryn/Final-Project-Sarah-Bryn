@@ -67,24 +67,52 @@ private:
 };
 
 class World {
+    friend class Frog;
+    friend class Cars;
 public:
     void updateCarMove ();
     void updateCarSpeed ();
+    bool globalBounds(Frog frog, Cars car);
+    void gameOver(Frog frog, Cars car);
     
 private:
 
     
 };
 
+bool globalBounds(Frog frog, std::vector<Cars> vc) {
+    for (int i=0; i<3; i++) {
+        if (frog.getFrog().getGlobalBounds() == vc[i].getCar().getGlobalBounds()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void gameOver(Frog frog, std::vector<Cars> vc) {
+    if (globalBounds(frog, vc) == true) {
+        frog.getFrog().setPosition(0, 450);
+        frog.getFrog().setFillColor(sf::Color(255,230,0));
+        for (int i=0; i<3; i++) {
+            vc[i].setxAxis(i*150);
+            vc[i].setyAxis(450);
+            vc[i].getCar().setPosition(vc[i].getxAxis(), vc[i].getyAxis());
+        }
+    }
+}
+
 void Frog:: moveFrog () {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-        frogShape.move(-50, 0);
+        frogShape.move(-25, 0);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-        frogShape.move(50, 0);
+        frogShape.move(25, 0);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-        frogShape.move(0, -50);
+        frogShape.move(0, -25);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
+        frogShape.move(0, 25);
     }
 }
 
@@ -108,10 +136,10 @@ float Cars::getyAxis() {
 }
 
 void Cars::setxAxis(float x) {
-
+    xAxis = x;
 }
 void Cars::setyAxis(float y) {
-    
+    yAxis = y;
 }
 
 void Cars::moveCar(float elapsed) {

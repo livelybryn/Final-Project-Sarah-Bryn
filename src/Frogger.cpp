@@ -30,6 +30,7 @@ int main()
                 window.close();
             frogger.moveFrog();
             car.moveCar(elapsed);
+            gameOver(frogger, carVector);
         }
         // clear the window with black color
         window.clear(sf::Color::Black);
