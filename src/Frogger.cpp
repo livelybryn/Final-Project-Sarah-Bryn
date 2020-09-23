@@ -1,14 +1,16 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "FroggerShapes.hpp"
 
 int main()
 {
+    Frog frogger;
+    Cars car;
+    vector<Cars> carVector = car.createVector();
+    
+    
     // create the window
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
-    
-    sf::CircleShape shape(25.f);
-    
-    shape.setPosition(375.f, 550.f);
 
     window.setFramerateLimit(60);
     // run the program as long as the window is open
@@ -21,24 +23,18 @@ int main()
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-                shape.move(-50.f, 0.f);
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-                shape.move(50.f, 0.f);
-            }
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-                shape.move(0.f, -50.f);
-            }
+            frogger.moveFrog();
         }
         // clear the window with black color
         window.clear(sf::Color::Black);
-        
-                
-// set the shape color to green
-shape.setFillColor(sf::Color(135,206,250));
 
- window.draw(shape);
+
+        window.draw(frogger.getFrog());
+        for (int i=0; i<carVector.size(); i++) {
+            window.draw(carVector[i].getCar());
+        }
+
+        
 	// end the current frame
         window.display();
     }
