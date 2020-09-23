@@ -29,11 +29,11 @@ public:
     sf::CircleShape getFrog () {
         return frogShape;
     }
+    sf::CircleShape frogShape;
     
 private:
     int xAxis;
     int yAxis;
-    sf::CircleShape frogShape;
 };
 
 class Cars {
@@ -59,12 +59,13 @@ public:
     void moveCar(int rand);
     void resetCar(int y);
     float carXAxis ();
+    sf::RectangleShape carShape;
     
 private:
     float xAxis;
     float yAxis;
     int speed;
-    sf::RectangleShape carShape;
+    
 };
 
 class World {
