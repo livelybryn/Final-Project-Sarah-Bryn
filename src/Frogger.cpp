@@ -32,11 +32,14 @@ int main()
 
     // create the window
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
+    
     //Background from this website: https://code.tutsplus.com/tutorials/corona-sdk-build-a-frogger-inspired-game-interface-creation--mobile-16254
     
+    //Read-in background as a texture
     sf::Texture background;
     background.loadFromFile("../../FroggerBackground.png");
     
+    //Create sprite with the background texture
     sf::Sprite sprite;
     sf::Vector2u size = background.getSize();
     sprite.setTexture(background);
@@ -76,6 +79,7 @@ int main()
             globalBounds(frogger, carVector1, carVector2, carVector3, intLevel);
             nextLevel(frogger, carVector1, carVector2, carVector3, intLevel);
             
+            //Set sprite as the background throughout the window loop
             window.draw(sprite);
             
         }
@@ -110,8 +114,9 @@ int main()
             carVector3[i].moveCar(1);
         }
         
-        // clear the window with black color
+        // clear the window
         window.clear(sf::Color::Black);
+        // Maintain sprite as the background outside of window loop
         window.draw(sprite);
 
         //Draw frogger, the cars, and text

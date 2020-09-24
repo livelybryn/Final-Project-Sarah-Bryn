@@ -92,7 +92,7 @@ void globalBounds(Frog& frog, vector<Cars>& vc1, vector<Cars>& vc2, vector<Cars>
                 vc2[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
             }
             for (int x=0; x < vc3.size(); x++) {
-                vc3[x].setSpeed(4);
+                vc3[x].setSpeed(3);
                 vc3[x].carShape.setPosition(x*275, 125);
                 vc3[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
             }
@@ -123,55 +123,56 @@ void nextLevel(Frog& frog, vector<Cars>& vc1, vector<Cars>& vc2, vector<Cars>& v
     }
 }
 
+//Creating Track #1
 vector<Cars> Cars::createTrack1 () {
     vector<Cars> carVector = {};
     Cars car;
     for (int i=0; i<3; i++) {
         car.speed = 3;
         car.carShape.setPosition(i*225, 425);
-        car.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+        car.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255)); //Each car is a ranom color
         carVector.push_back (car);
     }
     return carVector;
 }
-
+//Creating Track #2
 vector<Cars> Cars::createTrack2 () {
     vector<Cars> carVector2 = {};
     Cars car2;
     for (int i=0; i<3; i++) {
         car2.speed = 4;
         car2.carShape.setPosition(i*300, 275);
-        car2.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+        car2.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255)); //Each car is a random color
         carVector2.push_back (car2);
     }
     return carVector2;
 }
-
+//Creating Track #3
 vector<Cars> Cars::createTrack3 () {
     vector<Cars> carVector3 = {};
     Cars car3;
     for (int i=0; i<4; i++) {
-        car3.speed = 5;
+        car3.speed = 3;
         car3.carShape.setPosition(i*275, 125);
-        car3.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+        car3.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255)); //Each car is a random color
         carVector3.push_back (car3);
     }
     return carVector3;
 }
 
-void Cars::moveCar(int rand) {
+void Cars::moveCar(int rand) { //Give each rectangle car it's movement
     carShape.move(1 * speed * rand, 0);
 }
 
-void Cars::moveCarOpp (int rand) {
+void Cars::moveCarOpp (int rand) { //Give a car movement in opposite direction
     carShape.move(-1 * speed * rand, 0);
 }
 
-void Cars::resetCar(int x, int y) {
+void Cars::resetCar(int x, int y) { //Reset position of rectangle car
     carShape.setPosition(x, y);
 }
 
-float Cars::carXAxis () {
+float Cars::carXAxis () { //Return a rectangle car's current x position
     return carShape.getPosition().x;
 }
 
