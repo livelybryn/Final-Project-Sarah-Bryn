@@ -34,7 +34,6 @@ int main()
 
         //Movement for the cars
         for (int i=0; i<3; i++) {
-            int compare = carVector1[i].getxAxis();
             if(carVector1[i].carXAxis() > 800) {
                 carVector1[i].resetCar(450);
                 carVector1[i].moveCar(1);
