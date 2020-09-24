@@ -58,6 +58,7 @@ public:
     void moveCarOpp (int rand);
     void resetCar(int x, int y);
     float carXAxis ();
+    int setSpeed(int value);
     sf::RectangleShape carShape;
     
 private:
@@ -76,35 +77,49 @@ private:
     
 };
 
-void globalBounds(Frog& frog, vector<Cars>& vc1, vector<Cars>& vc2, vector<Cars>& vc3) {
+void globalBounds(Frog& frog, vector<Cars>& vc1, vector<Cars>& vc2, vector<Cars>& vc3, int& intLevel) {
     for (int i=0; i < vc3.size(); i++) {
         if (frog.frogShape.getGlobalBounds().intersects(vc1[i].carShape.getGlobalBounds()) || frog.frogShape.getGlobalBounds().intersects(vc2[i].carShape.getGlobalBounds()) || frog.frogShape.getGlobalBounds().intersects(vc3[i].carShape.getGlobalBounds())) {
             frog.frogShape.setPosition(375, 550);
             for (int x=0; x < vc1.size(); x++) {
+                vc1[x].setSpeed(3);
                 vc1[x].carShape.setPosition(x*225, 450);
+                vc1[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
             }
             for (int x=0; x < vc2.size(); x++) {
+                vc2[x].setSpeed(4);
                 vc2[x].carShape.setPosition(x*300, 300);
+                vc2[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
             }
             for (int x=0; x < vc3.size(); x++) {
+                vc3[x].setSpeed(5);
                 vc3[x].carShape.setPosition(x*275, 150);
+                vc3[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
             }
+            intLevel = 0;
         }
     }
 }
 
-void Frog:: moveFrog () {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-        frogShape.move(-25, 0);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-        frogShape.move(25, 0);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-        frogShape.move(0, -25);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-        frogShape.move(0, 25);
+void nextLevel(Frog& frog, vector<Cars>& vc1, vector<Cars>& vc2, vector<Cars>& vc3, int& intLevel) {
+    if (frog.frogShape.getPosition().y <= 0) {
+        frog.frogShape.setPosition(375, 550);
+        for (int i=0; i<3; i++) {
+            vc1[i].setSpeed(rand()%7);
+            vc1[i].carShape.setPosition(i*225, 450);
+            vc1[i].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+        }
+        for (int i=0; i<3; i++) {
+            vc2[i].setSpeed(rand()%7);
+            vc2[i].carShape.setPosition(i*300, 300);
+            vc2[i].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+        }
+        for (int i=0; i<4; i++) {
+            vc3[i].setSpeed(rand()%7);
+            vc3[i].carShape.setPosition(i*275, 150);
+            vc3[i].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+        }
+        intLevel++;
     }
 }
 
@@ -159,5 +174,10 @@ void Cars::resetCar(int x, int y) {
 float Cars::carXAxis () {
     return carShape.getPosition().x;
 }
+
+int Cars::setSpeed(int value) {
+    return speed = value;
+}
+
 
 #endif /* FroggerShapes_hpp */
