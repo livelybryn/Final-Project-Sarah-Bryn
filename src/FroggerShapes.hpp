@@ -80,7 +80,6 @@ void globalBounds(Frog& frog, vector<Cars>& vc1, vector<Cars>& vc2, vector<Cars>
     for (int i=0; i < vc3.size(); i++) {
         if (frog.frogShape.getGlobalBounds().intersects(vc1[i].carShape.getGlobalBounds()) || frog.frogShape.getGlobalBounds().intersects(vc2[i].carShape.getGlobalBounds()) || frog.frogShape.getGlobalBounds().intersects(vc3[i].carShape.getGlobalBounds())) {
             frog.frogShape.setPosition(375, 550);
-            frog.frogShape.setFillColor(sf::Color(255,230,0));
             for (int x=0; x < vc1.size(); x++) {
                 vc1[x].carShape.setPosition(x*225, 450);
             }

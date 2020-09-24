@@ -4,6 +4,8 @@
 
 int main()
 {
+    srand(time(nullptr));
+    
     Frog frogger;
     Cars track, track2, track3;
     vector<Cars> carVector1 = track.createTrack1();
