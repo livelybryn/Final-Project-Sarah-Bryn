@@ -51,19 +51,18 @@ public:
     sf::RectangleShape getCar () {
         return carShape;
     }
-    vector<Cars> createVector ();
-    float getxAxis();
-    float getyAxis();
-    void setxAxis(float x);
-    void setyAxis(float y);
+    vector<Cars> createTrack1 ();
+    vector<Cars> createTrack2 ();
+    vector<Cars> createTrack3 ();
     void moveCar(int rand);
-    void resetCar(int y);
+    void moveCarOpp (int rand);
+    void resetCar(int x, int y);
     float carXAxis ();
     sf::RectangleShape carShape;
     
 private:
     int speed;
-    
+
 };
 
 class World {
@@ -110,23 +109,52 @@ void Frog:: moveFrog () {
     }
 }
 
-vector<Cars> Cars::createVector () {
+vector<Cars> Cars::createTrack1 () {
     vector<Cars> carVector = {};
     Cars car;
     for (int i=0; i<3; i++) {
-        car.speed = 1;
-        car.carShape.setPosition(i*150, 450);
+        car.speed = 3;
+        car.carShape.setPosition(i*225, 450);
+        car.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
         carVector.push_back (car);
     }
     return carVector;
+}
+
+vector<Cars> Cars::createTrack2 () {
+    vector<Cars> carVector2 = {};
+    Cars car2;
+    for (int i=0; i<3; i++) {
+        car2.speed = 4;
+        car2.carShape.setPosition(i*300, 300);
+        car2.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+        carVector2.push_back (car2);
+    }
+    return carVector2;
+}
+
+vector<Cars> Cars::createTrack3 () {
+    vector<Cars> carVector3 = {};
+    Cars car3;
+    for (int i=0; i<4; i++) {
+        car3.speed = 5;
+        car3.carShape.setPosition(i*275, 150);
+        car3.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+        carVector3.push_back (car3);
+    }
+    return carVector3;
 }
 
 void Cars::moveCar(int rand) {
     carShape.move(1 * speed * rand, 0);
 }
 
-void Cars::resetCar(int y) {
-    carShape.setPosition(-120, y);
+void Cars::moveCarOpp (int rand) {
+    carShape.move(-1 * speed * rand, 0);
+}
+
+void Cars::resetCar(int x, int y) {
+    carShape.setPosition(x, y);
 }
 
 float Cars::carXAxis () {
