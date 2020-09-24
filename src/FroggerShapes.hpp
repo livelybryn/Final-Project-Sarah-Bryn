@@ -81,13 +81,13 @@ void globalBounds(Frog& frog, vector<Cars>& vc1, vector<Cars>& vc2, vector<Cars>
         if (frog.frogShape.getGlobalBounds().intersects(vc1[i].carShape.getGlobalBounds()) || frog.frogShape.getGlobalBounds().intersects(vc2[i].carShape.getGlobalBounds()) || frog.frogShape.getGlobalBounds().intersects(vc3[i].carShape.getGlobalBounds())) {
             frog.frogShape.setPosition(375, 550);
             for (int x=0; x < vc1.size(); x++) {
-                vc1[x].carShape.setPosition(x*225, 450);
+                vc1[x].carShape.setPosition(x*225, 425);
             }
             for (int x=0; x < vc2.size(); x++) {
-                vc2[x].carShape.setPosition(x*300, 300);
+                vc2[x].carShape.setPosition(x*300, 275);
             }
             for (int x=0; x < vc3.size(); x++) {
-                vc3[x].carShape.setPosition(x*275, 150);
+                vc3[x].carShape.setPosition(x*275, 125);
             }
         }
     }
@@ -113,7 +113,7 @@ vector<Cars> Cars::createTrack1 () {
     Cars car;
     for (int i=0; i<3; i++) {
         car.speed = 3;
-        car.carShape.setPosition(i*225, 450);
+        car.carShape.setPosition(i*225, 425);
         car.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
         carVector.push_back (car);
     }
@@ -125,7 +125,7 @@ vector<Cars> Cars::createTrack2 () {
     Cars car2;
     for (int i=0; i<3; i++) {
         car2.speed = 4;
-        car2.carShape.setPosition(i*300, 300);
+        car2.carShape.setPosition(i*300, 275);
         car2.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
         carVector2.push_back (car2);
     }
@@ -137,7 +137,7 @@ vector<Cars> Cars::createTrack3 () {
     Cars car3;
     for (int i=0; i<4; i++) {
         car3.speed = 5;
-        car3.carShape.setPosition(i*275, 150);
+        car3.carShape.setPosition(i*275, 125);
         car3.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
         carVector3.push_back (car3);
     }

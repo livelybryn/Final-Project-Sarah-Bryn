@@ -1,3 +1,6 @@
 ##Don't include anything in files called Xcode or build
 build/
 xcode/
+
+##Don't add
+.DS_Store
