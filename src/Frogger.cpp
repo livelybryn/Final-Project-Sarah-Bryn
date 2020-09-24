@@ -7,7 +7,7 @@ int main()
     srand(time(nullptr));
     
     sf::Font font;
-    if (!font.loadFromFile("PrettyLily.ttf")) {
+    if (!font.loadFromFile("PrettyLily.ttf")) { // font file is saved in xcode --> debug folder
         std::cout << "Font didn't load" << std::endl;
         return 1;
     }
@@ -19,7 +19,7 @@ int main()
     
     sf::Text level;
     level.setFont(font);
-    int intLevel = 0;
+    int intLevel = 1;
     level.setString(std::to_string(intLevel));
     level.setCharacterSize(75);
     level.setPosition(700, 25);
@@ -62,7 +62,7 @@ int main()
                 window.close();
             
             //Movement for the frog
-            if(event.type == sf::Event::KeyPressed){
+            if(event.type == sf::Event::KeyPressed){ // Moves the frog if a key is pressed
                             if(event.key.code == sf::Keyboard::W){
                                 frogger.frogShape.move(sf::Vector2f(0,-35));
                             }
@@ -76,8 +76,8 @@ int main()
                                 frogger.frogShape.move(sf::Vector2f(35,0));
                             }
                         }
-            globalBounds(frogger, carVector1, carVector2, carVector3, intLevel);
-            nextLevel(frogger, carVector1, carVector2, carVector3, intLevel);
+            globalBounds(frogger, carVector1, carVector2, carVector3, intLevel); // Collision detecter
+            nextLevel(frogger, carVector1, carVector2, carVector3, intLevel); // Next level initiator
             
             //Set sprite as the background throughout the window loop
             window.draw(sprite);
