@@ -32,7 +32,16 @@ int main()
 
     // create the window
     sf::RenderWindow window(sf::VideoMode(800, 600), "My window");
-
+    //Background from this website: https://code.tutsplus.com/tutorials/corona-sdk-build-a-frogger-inspired-game-interface-creation--mobile-16254
+    
+    sf::Texture background;
+    background.loadFromFile("../../FroggerBackground.png");
+    
+    sf::Sprite sprite;
+    sf::Vector2u size = background.getSize();
+    sprite.setTexture(background);
+    sprite.setOrigin(size.x / 500, size.y / 300);
+    
     window.setFramerateLimit(60);
     
     while (window.isOpen())
@@ -67,14 +76,16 @@ int main()
             globalBounds(frogger, carVector1, carVector2, carVector3, intLevel);
             nextLevel(frogger, carVector1, carVector2, carVector3, intLevel);
             
+            window.draw(sprite);
+            
         }
         
 
         //Movement for the cars
         for (int i=0; i<carVector1.size(); i++) {
             if(carVector1[i].carXAxis() > 800) {
-                carVector1[i].resetCar(-120, 450);
-                globalBounds(frogger, carVector1, carVector2, carVector3, intLevel);
+                carVector1[i].resetCar(-120, 425);
+                globalBounds(frogger, carVector1, carVector2, carVector3);
                 carVector1[i].moveCar(1);
             }
             globalBounds(frogger, carVector1, carVector2, carVector3, intLevel);
@@ -82,7 +93,7 @@ int main()
         }
         for (int i=0; i<carVector2.size(); i++) {
             if(carVector2[i].carXAxis() > 800) {
-                carVector2[i].resetCar(-120, 300);
+                carVector2[i].resetCar(-120, 275);
                 carVector2[i].moveCar(1);
                 globalBounds(frogger, carVector1, carVector2, carVector3, intLevel);
             }
@@ -91,8 +102,8 @@ int main()
         }
         for (int i=0; i<carVector3.size(); i++) {
             if(carVector3[i].carXAxis() > 800) {
-                carVector3[i].resetCar(-120, 150);
-                globalBounds(frogger, carVector1, carVector2, carVector3, intLevel);
+                carVector3[i].resetCar(-120, 125);
+                globalBounds(frogger, carVector1, carVector2, carVector3);
                 carVector3[i].moveCar(1);
             }
             globalBounds(frogger, carVector1, carVector2, carVector3, intLevel);
@@ -101,6 +112,7 @@ int main()
         
         // clear the window with black color
         window.clear(sf::Color::Black);
+        window.draw(sprite);
 
         //Draw frogger, the cars, and text
         window.draw(text);

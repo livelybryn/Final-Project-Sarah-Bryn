@@ -128,7 +128,7 @@ vector<Cars> Cars::createTrack1 () {
     Cars car;
     for (int i=0; i<3; i++) {
         car.speed = 3;
-        car.carShape.setPosition(i*225, 450);
+        car.carShape.setPosition(i*225, 425);
         car.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
         carVector.push_back (car);
     }
@@ -140,7 +140,7 @@ vector<Cars> Cars::createTrack2 () {
     Cars car2;
     for (int i=0; i<3; i++) {
         car2.speed = 4;
-        car2.carShape.setPosition(i*300, 300);
+        car2.carShape.setPosition(i*300, 275);
         car2.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
         carVector2.push_back (car2);
     }
@@ -152,7 +152,7 @@ vector<Cars> Cars::createTrack3 () {
     Cars car3;
     for (int i=0; i<4; i++) {
         car3.speed = 5;
-        car3.carShape.setPosition(i*275, 150);
+        car3.carShape.setPosition(i*275, 125);
         car3.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
         carVector3.push_back (car3);
     }
