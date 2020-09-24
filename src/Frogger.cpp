@@ -29,7 +29,7 @@ int main()
             
             //Movement for the frog
             frogger.moveFrog();
-            globalBounds(frogger, carVector1);
+            globalBounds(frogger, carVector1, carVector2, carVector3);
             
         }
         

@@ -82,13 +82,13 @@ void globalBounds(Frog& frog, vector<Cars>& vc1, vector<Cars>& vc2, vector<Cars>
             frog.frogShape.setPosition(375, 550);
             frog.frogShape.setFillColor(sf::Color(255,230,0));
             for (int x=0; x < vc1.size(); x++) {
-                vc1[x].carShape.setPosition(x*150, 450);
+                vc1[x].carShape.setPosition(x*225, 450);
             }
             for (int x=0; x < vc2.size(); x++) {
-                vc2[x].carShape.setPosition(x*150, 300);
+                vc2[x].carShape.setPosition(x*300, 300);
             }
             for (int x=0; x < vc3.size(); x++) {
-                vc2[x].carShape.setPosition(x*150, 150);
+                vc3[x].carShape.setPosition(x*275, 150);
             }
         }
     }
