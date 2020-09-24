@@ -83,17 +83,17 @@ void globalBounds(Frog& frog, vector<Cars>& vc1, vector<Cars>& vc2, vector<Cars>
             frog.frogShape.setPosition(375, 550);
             for (int x=0; x < vc1.size(); x++) {
                 vc1[x].setSpeed(3);
-                vc1[x].carShape.setPosition(x*225, 450);
+                vc1[x].carShape.setPosition(x*225, 425);
                 vc1[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
             }
             for (int x=0; x < vc2.size(); x++) {
                 vc2[x].setSpeed(4);
-                vc2[x].carShape.setPosition(x*300, 300);
+                vc2[x].carShape.setPosition(x*300, 275);
                 vc2[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
             }
             for (int x=0; x < vc3.size(); x++) {
-                vc3[x].setSpeed(5);
-                vc3[x].carShape.setPosition(x*275, 150);
+                vc3[x].setSpeed(4);
+                vc3[x].carShape.setPosition(x*275, 125);
                 vc3[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
             }
             intLevel = 0;
@@ -106,18 +106,18 @@ void nextLevel(Frog& frog, vector<Cars>& vc1, vector<Cars>& vc2, vector<Cars>& v
         frog.frogShape.setPosition(375, 550);
         for (int i=0; i<3; i++) {
             vc1[i].setSpeed(rand()%7);
-            vc1[i].carShape.setPosition(i*225, 450);
-            vc1[i].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+            vc1[i].carShape.setPosition(i*225, 425);
+            vc1[i].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255)); // All levels past 1 have random car movements
         }
         for (int i=0; i<3; i++) {
             vc2[i].setSpeed(rand()%7);
-            vc2[i].carShape.setPosition(i*300, 300);
-            vc2[i].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+            vc2[i].carShape.setPosition(i*300, 275);
+            vc2[i].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255)); // All levels past 1 have random car movements
         }
         for (int i=0; i<4; i++) {
             vc3[i].setSpeed(rand()%7);
-            vc3[i].carShape.setPosition(i*275, 150);
-            vc3[i].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+            vc3[i].carShape.setPosition(i*275, 125);
+            vc3[i].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255)); // All levels past 1 have random car movements
         }
         intLevel++;
     }

@@ -85,7 +85,7 @@ int main()
         for (int i=0; i<carVector1.size(); i++) {
             if(carVector1[i].carXAxis() > 800) {
                 carVector1[i].resetCar(-120, 425);
-                globalBounds(frogger, carVector1, carVector2, carVector3);
+                globalBounds(frogger, carVector1, carVector2, carVector3, intLevel);
                 carVector1[i].moveCar(1);
             }
             globalBounds(frogger, carVector1, carVector2, carVector3, intLevel);
@@ -103,7 +103,7 @@ int main()
         for (int i=0; i<carVector3.size(); i++) {
             if(carVector3[i].carXAxis() > 800) {
                 carVector3[i].resetCar(-120, 125);
-                globalBounds(frogger, carVector1, carVector2, carVector3);
+                globalBounds(frogger, carVector1, carVector2, carVector3, intLevel);
                 carVector3[i].moveCar(1);
             }
             globalBounds(frogger, carVector1, carVector2, carVector3, intLevel);
