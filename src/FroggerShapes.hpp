@@ -77,49 +77,51 @@ private:
     
 };
 
+// This function resets the frog, cars, and level if the frog boundaries touch any of the car boundaries
 void globalBounds(Frog& frog, vector<Cars>& vc1, vector<Cars>& vc2, vector<Cars>& vc3, int& intLevel) {
     for (int i=0; i < vc3.size(); i++) {
-        if (frog.frogShape.getGlobalBounds().intersects(vc1[i].carShape.getGlobalBounds()) || frog.frogShape.getGlobalBounds().intersects(vc2[i].carShape.getGlobalBounds()) || frog.frogShape.getGlobalBounds().intersects(vc3[i].carShape.getGlobalBounds())) {
-            frog.frogShape.setPosition(375, 550);
-            for (int x=0; x < vc1.size(); x++) {
-                vc1[x].setSpeed(3);
-                vc1[x].carShape.setPosition(x*225, 425);
-                vc1[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+        if (frog.frogShape.getGlobalBounds().intersects(vc1[i].carShape.getGlobalBounds()) || frog.frogShape.getGlobalBounds().intersects(vc2[i].carShape.getGlobalBounds()) || frog.frogShape.getGlobalBounds().intersects(vc3[i].carShape.getGlobalBounds())) { // Checks frog boundaries with all car boundaries
+            frog.frogShape.setPosition(375, 550); // Resets frog position
+            for (int x=0; x < vc1.size(); x++) { // loop through track 1
+                vc1[x].setSpeed(3); // Resets cars speed
+                vc1[x].carShape.setPosition(x*225, 425); // Resets cars position
+                vc1[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255)); // Changes cars color indicating restart
             }
-            for (int x=0; x < vc2.size(); x++) {
-                vc2[x].setSpeed(4);
-                vc2[x].carShape.setPosition(x*300, 275);
-                vc2[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+            for (int x=0; x < vc2.size(); x++) { // loop through track 2
+                vc2[x].setSpeed(4); // Resets cars speed
+                vc2[x].carShape.setPosition(x*300, 275); // Resets cars position
+                vc2[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255)); // Changes cars color indicating restart
             }
-            for (int x=0; x < vc3.size(); x++) {
-                vc3[x].setSpeed(4);
-                vc3[x].carShape.setPosition(x*275, 125);
-                vc3[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
+            for (int x=0; x < vc3.size(); x++) { // loop through track 3
+                vc3[x].setSpeed(3); // Resets cars speed
+                vc3[x].carShape.setPosition(x*275, 125); // Resets cars position
+                vc3[x].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255)); // Changes cars color indicating restart
             }
-            intLevel = 0;
+            intLevel = 1; // Resets level to 1
         }
     }
 }
 
+// This function resets the frog, cars, and adds 1 to the level. The cars are given a random speed and new colors
 void nextLevel(Frog& frog, vector<Cars>& vc1, vector<Cars>& vc2, vector<Cars>& vc3, int& intLevel) {
-    if (frog.frogShape.getPosition().y <= 0) {
+    if (frog.frogShape.getPosition().y <= 0) { // If the frog passes the top of the screen, the next level is initiated
         frog.frogShape.setPosition(375, 550);
-        for (int i=0; i<3; i++) {
-            vc1[i].setSpeed(rand()%7);
+        for (int i=0; i<vc1.size(); i++) { // loops through track 1
+            vc1[i].setSpeed(rand()%7); // Gives each car a random speed after level one
             vc1[i].carShape.setPosition(i*225, 425);
             vc1[i].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255)); // All levels past 1 have random car movements
         }
-        for (int i=0; i<3; i++) {
-            vc2[i].setSpeed(rand()%7);
+        for (int i=0; i<vc2.size(); i++) { // loops through track 2
+            vc2[i].setSpeed(rand()%7); // Gives each car a random speed after level one
             vc2[i].carShape.setPosition(i*300, 275);
             vc2[i].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255)); // All levels past 1 have random car movements
         }
-        for (int i=0; i<4; i++) {
-            vc3[i].setSpeed(rand()%7);
+        for (int i=0; i<vc3.size(); i++) { // loops through track 3
+            vc3[i].setSpeed(rand()%7); // Gives each car a random speed after level one
             vc3[i].carShape.setPosition(i*275, 125);
             vc3[i].carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255)); // All levels past 1 have random car movements
         }
-        intLevel++;
+        intLevel++; // Increases level
     }
 }
 
@@ -151,7 +153,7 @@ vector<Cars> Cars::createTrack3 () {
     vector<Cars> carVector3 = {};
     Cars car3;
     for (int i=0; i<4; i++) {
-        car3.speed = 5;
+        car3.speed = 3;
         car3.carShape.setPosition(i*275, 125);
         car3.carShape.setFillColor(sf::Color(rand()%255, rand()%255, rand()%255));
         carVector3.push_back (car3);
@@ -175,6 +177,7 @@ float Cars::carXAxis () {
     return carShape.getPosition().x;
 }
 
+// This function changes the speed to a given value
 int Cars::setSpeed(int value) {
     return speed = value;
 }
